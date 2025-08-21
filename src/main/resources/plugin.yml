@@ -1,0 +1,11 @@
+name: BedWars
+version: '1.0-SNAPSHOT'
+main: ga.justreddy.wiki.bedwars.BedWars
+prefix: BedWars
+authors: [ JustReddy, Oefen ]
+description: BedWars plugin based on Hypixel
+commands:
+  stop:
+    description: Stop the server
+    usage: /<command>
+    permission: bedwars.stop

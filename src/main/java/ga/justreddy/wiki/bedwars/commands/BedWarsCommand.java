@@ -18,14 +18,12 @@ public abstract class BedWarsCommand implements CommandExecutor {
     protected final String name;
     private final boolean requiresPlayer;
     private final String permission;
-    private final List<String> aliases;
 
     public BedWarsCommand(BedWars plugin, String name, boolean requiresPlayer, String permission, List<String> aliases) {
         this.name = name;
         this.plugin = plugin;
         this.requiresPlayer = requiresPlayer;
         this.permission = permission;
-        this.aliases = aliases;
         final PluginCommand command = plugin.getCommand(name);
         command.setExecutor(this);
         if (aliases != null && !aliases.isEmpty()) {

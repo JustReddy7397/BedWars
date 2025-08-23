@@ -23,6 +23,11 @@ public class MainBedWarsCommand extends BedWarsCommand {
     @Override
     public boolean execute(Executor executor) {
 
+        if (executor.getArgs().length == 0) {
+            // TODO Display help message
+            return true;
+        }
+
         return true;
     }
 

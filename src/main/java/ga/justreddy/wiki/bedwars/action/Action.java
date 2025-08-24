@@ -10,6 +10,6 @@ public abstract class Action {
 
     public abstract String getId();
 
-    public abstract void onAction(BedWars bedWars, GamePlayer gamePlayer, String data);
+    public abstract void onAction(BedWars bedWars, GamePlayer gamePlayer, Object data);
 
 }

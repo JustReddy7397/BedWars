@@ -1,6 +1,8 @@
 package ga.justreddy.wiki.bedwars.action;
 
 import ga.justreddy.wiki.bedwars.BedWars;
+import ga.justreddy.wiki.bedwars.action.actions.GiveAction;
+import ga.justreddy.wiki.bedwars.action.actions.ShopCategoryAction;
 import ga.justreddy.wiki.bedwars.model.entity.GamePlayer;
 import org.bukkit.entity.Player;
 
@@ -26,6 +28,7 @@ public class ActionManager {
         this.plugin = plugin;
         this.actions = new HashMap<>();
         initialized = true;
+        registerActions(new ShopCategoryAction(), new GiveAction());
     }
 
     private void registerActions(Action... actions) {
@@ -45,6 +48,10 @@ public class ActionManager {
 
         final GamePlayer gamePlayer = optionalGamePlayer.get();
 
+        onAction(gamePlayer, actions);
+    }
+
+    public void onAction(GamePlayer gamePlayer, List<String> actions) {
         actions.forEach(action -> {
             final String[] split = action.split(";");
             final String actionId = split[0];
@@ -60,6 +67,36 @@ public class ActionManager {
 
             actionObject.onAction(plugin, gamePlayer, data);
         });
+    }
+
+    public void onAction(GamePlayer gamePlayer, List<String> actions, Map<String, Boolean> conditions) {
+        actions.forEach(action -> {
+            final String[] split = action.split(";");
+            final String actionId = split[0];
+            if (conditions.containsKey(actionId) && !conditions.get(actionId)) {
+                return;
+            }
+            final Action actionObject = actionId == null ? null : this.actions.get(actionId.toLowerCase());
+
+            if (actionObject == null) {
+                plugin.getLogger().warning("Action with ID '" + actionId + "' not found.");
+                return;
+            }
+
+            String data = action.length() > 1 ? action.substring(action.length() - 1) : "";
+            // TODO PAPI
+
+            actionObject.onAction(plugin, gamePlayer, data);
+        });
+    }
+
+    public void triggerAction(String actionId, GamePlayer gamePlayer, Object data) {
+        Action action = this.actions.get(actionId.toLowerCase());
+        if (action != null) {
+            action.onAction(plugin, gamePlayer, data);
+        } else {
+            plugin.getLogger().warning("Action with ID '" + actionId + "' not found.");
+        }
     }
 
 }

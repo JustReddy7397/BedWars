@@ -1,6 +1,8 @@
 package ga.justreddy.wiki.bedwars.model.entity;
 
 import ga.justreddy.wiki.bedwars.model.entity.data.PlayerQuickBuy;
+import ga.justreddy.wiki.bedwars.model.game.Game;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.Optional;
@@ -18,6 +20,8 @@ public class GamePlayer {
     private final UUID uniqueId;
     private final String name;
     private PlayerQuickBuy quickBuy;
+
+    private Game game;
 
     public GamePlayer(UUID uniqueId, String name) {
         this.uniqueId = uniqueId;
@@ -64,7 +68,15 @@ public class GamePlayer {
         return name;
     }
 
+    public Optional<Player> getBukkitPlayer() {
+        return Optional.ofNullable(Bukkit.getPlayer(uniqueId));
+    }
+
     public PlayerQuickBuy getQuickBuy() {
         return quickBuy;
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

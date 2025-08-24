@@ -85,6 +85,15 @@ public class GameManager {
         return games.get(0);
     }
 
+    public boolean doesGameWithNameExist(String name) {
+        for (final Game game : games.values()) {
+            if (game.getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Map<UUID, Game> getGames() {
         return games;
     }

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author JustReddy
  */
-public abstract class SubCommand {
+public abstract class SubCommand<T> {
 
     protected final BedWars plugin;
     private final String name;

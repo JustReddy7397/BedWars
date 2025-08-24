@@ -57,6 +57,10 @@ public class PlayerQuickBuy {
         return -1;
     }
 
+    /**
+     * Removes an item from a specific quick buy slot.
+     * @param slot The slot number from which the item should be removed
+     */
     public void remove(int slot) {
         this.quickBuyItems.remove(slot);
     }

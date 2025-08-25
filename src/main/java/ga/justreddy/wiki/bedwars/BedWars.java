@@ -2,6 +2,7 @@ package ga.justreddy.wiki.bedwars;
 
 import ga.justreddy.wiki.bedwars.action.ActionManager;
 import ga.justreddy.wiki.bedwars.config.Config;
+import ga.justreddy.wiki.bedwars.model.addon.AddonManager;
 import ga.justreddy.wiki.bedwars.model.game.GameManager;
 import ga.justreddy.wiki.bedwars.model.game.shop.ShopManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -9,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class BedWars extends JavaPlugin {
 
     private ActionManager actionManager;
+    private AddonManager addonManager;
     private GameManager gameManager;
     private ShopManager shopManager;
 
@@ -27,6 +29,7 @@ public final class BedWars extends JavaPlugin {
 
     private void loadManagers() {
         this.actionManager = new ActionManager(this);
+        this.addonManager = new AddonManager(this);
         this.shopManager = new ShopManager(this);
         this.gameManager = new GameManager(this);
     }
@@ -37,6 +40,10 @@ public final class BedWars extends JavaPlugin {
 
     public ActionManager getActionManager() {
         return actionManager;
+    }
+
+    public AddonManager getAddonManager() {
+        return addonManager;
     }
 
     public GameManager getGameManager() {

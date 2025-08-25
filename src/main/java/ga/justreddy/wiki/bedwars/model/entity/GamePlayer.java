@@ -1,5 +1,6 @@
 package ga.justreddy.wiki.bedwars.model.entity;
 
+import ga.justreddy.wiki.bedwars.model.entity.data.PlayerHotBar;
 import ga.justreddy.wiki.bedwars.model.entity.data.PlayerQuickBuy;
 import ga.justreddy.wiki.bedwars.model.game.Game;
 import org.bukkit.Bukkit;
@@ -20,6 +21,7 @@ public class GamePlayer {
     private final UUID uniqueId;
     private final String name;
     private PlayerQuickBuy quickBuy;
+    private PlayerHotBar playerHotBar;
 
     private Game game;
 
@@ -27,6 +29,7 @@ public class GamePlayer {
         this.uniqueId = uniqueId;
         this.name = name;
         this.quickBuy = new PlayerQuickBuy();
+        this.playerHotBar = new PlayerHotBar();
     }
 
     public static Optional<GamePlayer> get(UUID uniqueId) {
@@ -74,6 +77,10 @@ public class GamePlayer {
 
     public PlayerQuickBuy getQuickBuy() {
         return quickBuy;
+    }
+
+    public PlayerHotBar getPlayerHotBar() {
+        return playerHotBar;
     }
 
     public Game getGame() {

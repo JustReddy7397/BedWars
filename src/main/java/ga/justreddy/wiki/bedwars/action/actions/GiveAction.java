@@ -3,14 +3,18 @@ package ga.justreddy.wiki.bedwars.action.actions;
 import ga.justreddy.wiki.bedwars.BedWars;
 import ga.justreddy.wiki.bedwars.action.Action;
 import ga.justreddy.wiki.bedwars.model.entity.GamePlayer;
-import ga.justreddy.wiki.bedwars.model.game.shop.ShopItem;
+import ga.justreddy.wiki.bedwars.model.entity.data.PlayerHotBar;
 import ga.justreddy.wiki.bedwars.model.game.shop.item.CustomShopItem;
+import ga.justreddy.wiki.bedwars.model.game.shop.item.ItemType;
+import ga.justreddy.wiki.bedwars.model.game.shop.item.ShopItem;
 import ga.justreddy.wiki.bedwars.utility.builder.ItemBuilder;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -31,6 +35,8 @@ public class GiveAction extends Action {
         if (!(data instanceof ShopItem)) {
             return;
         }
+
+        final PlayerHotBar hotBar = gamePlayer.getPlayerHotBar();
 
         final ShopItem item = (ShopItem) data;
 
@@ -63,7 +69,7 @@ public class GiveAction extends Action {
 
                 builder.withAmount(item.getAmount());
                 item.takeItems(gamePlayer);
-                playerInventory.addItem(builder.build());
+                giveHotBarItems(hotBar, item, playerInventory, builder);
             }
         } else {
             final CustomShopItem customShopItem = item.getCustomShopItem();
@@ -91,7 +97,7 @@ public class GiveAction extends Action {
                     }
                     // TODO CHECK PERSISTENT DATA STUFF
                     if (previous != null) {
-                        playerInventory.addItem(itemStack);
+                        giveHotBarItems(hotBar, item, playerInventory, builder);
                     } else {
                         playerInventory.removeItem(itemStack);
                         playerInventory.setItem(i, upgrade);
@@ -101,8 +107,25 @@ public class GiveAction extends Action {
                 item.takeItems(gamePlayer);
             } else {
                 item.takeItems(gamePlayer);
-                playerInventory.addItem(builder.build());
+                giveHotBarItems(hotBar, item, playerInventory, builder);
             }
+        }
+    }
+
+    private void giveHotBarItems(PlayerHotBar hotBar, ShopItem item, PlayerInventory playerInventory, ItemBuilder builder) {
+        final ItemType itemType = item.getItemType();
+        final List<Integer> slots = hotBar.getSlotsFromType(itemType);
+        boolean given = false;
+        for (final int slot : slots) {
+            final ItemStack hotBarItem = playerInventory.getItem(slot);
+            if (hotBarItem == null || hotBarItem.getType() == Material.AIR) {
+                given = true;
+                playerInventory.setItem(slot, builder.build());
+                break;
+            }
+        }
+        if (!given) {
+            playerInventory.addItem(builder.build());
         }
     }
 }

@@ -1,4 +1,4 @@
-package ga.justreddy.wiki.bedwars.model.game.shop;
+package ga.justreddy.wiki.bedwars.model.game.shop.item;
 
 import org.bukkit.Material;
 

@@ -3,6 +3,7 @@ package ga.justreddy.wiki.bedwars.model.game.shop;
 import com.cryptomorin.xseries.XMaterial;
 import ga.justreddy.wiki.bedwars.BedWars;
 import ga.justreddy.wiki.bedwars.model.entity.GamePlayer;
+import ga.justreddy.wiki.bedwars.model.game.shop.item.ShopItem;
 import ga.justreddy.wiki.bedwars.utility.TextUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;

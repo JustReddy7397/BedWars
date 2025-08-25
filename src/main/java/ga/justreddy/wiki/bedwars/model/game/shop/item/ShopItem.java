@@ -1,10 +1,9 @@
-package ga.justreddy.wiki.bedwars.model.game.shop;
+package ga.justreddy.wiki.bedwars.model.game.shop.item;
 
 import com.cryptomorin.xseries.XMaterial;
-import ga.justreddy.wiki.bedwars.action.Action;
 import ga.justreddy.wiki.bedwars.action.ActionManager;
 import ga.justreddy.wiki.bedwars.model.entity.GamePlayer;
-import ga.justreddy.wiki.bedwars.model.game.shop.item.CustomShopItem;
+import ga.justreddy.wiki.bedwars.model.game.shop.ShopManager;
 import ga.justreddy.wiki.bedwars.utility.Replaceable;
 import ga.justreddy.wiki.bedwars.utility.builder.ItemBuilder;
 import org.bukkit.Material;
@@ -34,6 +33,7 @@ public class ShopItem {
     private final List<String> actions;
     private boolean customItem;
     private CustomShopItem customShopItem;
+    private ItemType itemType = ItemType.NONE;
 
     public ShopItem(ShopManager shopManager, XMaterial material) {
         this.id = material.name() + UUID.randomUUID().toString().substring(0, 6);
@@ -135,6 +135,9 @@ public class ShopItem {
         if (section.contains("customItem")) {
             this.customItem = true;
             this.customShopItem = shopManager.getCustomItemById(section.getString("customItem"));
+        }
+        if (section.contains("type")) {
+            this.itemType = ItemType.valueOf(section.getString("type").toUpperCase());
         }
     }
 
@@ -256,5 +259,9 @@ public class ShopItem {
 
     public CustomShopItem getCustomShopItem() {
         return customShopItem;
+    }
+
+    public ItemType getItemType() {
+        return itemType;
     }
 }

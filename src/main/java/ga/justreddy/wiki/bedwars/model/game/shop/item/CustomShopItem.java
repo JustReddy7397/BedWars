@@ -1,7 +1,6 @@
 package ga.justreddy.wiki.bedwars.model.game.shop.item;
 
 import ga.justreddy.wiki.bedwars.model.entity.GamePlayer;
-import ga.justreddy.wiki.bedwars.model.game.shop.ShopItem;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;

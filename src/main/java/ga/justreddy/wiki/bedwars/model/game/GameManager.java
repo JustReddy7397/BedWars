@@ -35,18 +35,12 @@ public class GameManager {
 
     public void start(BedWars plugin) {
         plugin.getLogger().log(Level.INFO, "Loading games...");
-        final File[] files = gamesDir.listFiles();
-
+        final File[] files = gamesDir.listFiles((dir, name) -> name.endsWith(".yml"));
         if (files == null) {
             return;
         }
 
         for (final File file : files) {
-
-            if (!file.getName().endsWith(".yml")) {
-                continue;
-            }
-
             final String fileName = file.getName().replace(".yml", "");
             final UUID uniqueId = UUID.randomUUID();
             final FileConfiguration config = YamlConfiguration.loadConfiguration(file);

@@ -1,0 +1,80 @@
+#      _____  ____           ___          __
+#     |  __ \|  _ \         | \ \        / /
+#     | |__) | |_) | ___  __| |\ \  /\  / /_ _ _ __ ___
+#     |  _  /|  _ < / _ \/ _` | \ \/  \/ / _` | '__/ __|
+#     | | \ \| |_) |  __/ (_| |  \  /\  / (_| | |  \__ \
+#     |_|  \_\____/ \___|\__,_|   \/  \/ \__,_|_|  |___/
+#
+# Author: JustReddy
+# File: generators.yml
+# Description: Configuration file for generators in BedWars
+# Add as many generators as you want :)
+
+version: 1
+creation-date: "<date>"
+
+generators:
+  iron:
+    item: "IRON_INGOT"
+    display: "&fIron"
+    lore: [ ]
+    type: SPAWN_GROUND
+    spawn-delays:
+      tier1: 2
+      tier2: 1
+      tier3: 0.5
+      #...
+    max-spawn: 64
+    spawn-amount: 1
+  gold:
+    item: "GOLD_INGOT"
+    display: "&6Gold"
+    lore: [ ]
+    type: SPAWN_GROUND
+    spawn-delays:
+      tier1: 5
+      tier2: 3
+      tier3: 1
+    max-spawn: 32
+    spawn-amount: 1
+  diamond:
+    item: "DIAMOND"
+    display: "&bDiamond"
+    lore: [ ]
+    type: SPAWN_AIR
+    spawn-delays:
+      tier1: 30
+      tier2: 20
+      tier3: 10
+    max-spawn: 4
+    spawn-amount: 1
+    armorstand: # ONLY FOR SPAWN_AIR TYPE
+      enabled: true
+      lines:
+        - "&bDiamond Generator"
+        - "&7Tier: %tier%"
+        - "&7Spawning in: %time%"
+      bobbing: true
+      item: "DIAMOND_BLOCK"
+      rotation-speed: 0.5
+  emerald:
+    item: "EMERALD"
+    display: "&aEmerald"
+    lore: [ ]
+    type: SPAWN_AIR
+    spawn-delays:
+      tier1: 30
+      tier2: 20
+      tier3: 10
+      #...
+    max-spawn: 4
+    spawn-amount: 1
+    armorstand:
+      enabled: true
+      lines:
+        - "&aEmerald Generator"
+        - "&7Tier: %tier%"
+        - "&7Spawning in: %time%"
+      bobbing: true
+      item: "EMERALD_BLOCK"
+      rotation-speed: 0.5

@@ -97,6 +97,14 @@ public class Config {
     }
 
     /**
+     * Returns the system file of the config.
+     * @return The File object representing the config file
+     */
+    public File getFile() {
+        return file;
+    }
+
+    /**
      * Returns the configuration object.
      * @return The FileConfiguration object containing the config data
      */

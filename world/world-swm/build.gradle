@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group = 'ga.justreddy.wiki'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly project(':')
+    compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
+}
+
+test {
+    useJUnitPlatform()
+}

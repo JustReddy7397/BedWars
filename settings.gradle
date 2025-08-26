@@ -1,1 +1,4 @@
 rootProject.name = 'BedWars'
+include 'world:world-swm'
+findProject(':world:world-swm')?.name = 'world-swm'
+

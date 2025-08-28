@@ -3,6 +3,8 @@ package ga.justreddy.wiki.bedwars.commands;
 
 import ga.justreddy.wiki.bedwars.BedWars;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,11 +29,11 @@ public abstract class SubCommand<T> {
     }
 
     public SubCommand(BedWars plugin, String name, String description, String usage, String permission, String... aliases) {
-        this(plugin, name, description, usage, permission, List.of(aliases));
+        this(plugin, name, description, usage, permission, new ArrayList<>(Arrays.asList(aliases)));
     }
 
     public SubCommand(BedWars plugin, String name, String description, String usage, String permission) {
-        this(plugin, name, description, usage, permission, List.of());
+        this(plugin, name, description, usage, permission, new ArrayList<>());
     }
 
     public SubCommand(BedWars plugin, String name, String description, String usage) {

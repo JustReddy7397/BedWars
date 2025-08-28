@@ -35,14 +35,15 @@ public class GeneratorManager {
             throw new RuntimeException(e);
         }
         this.generatorsFile = config.getFile();
+        start();
     }
 
     private void start() {
         final FileConfiguration config = getFileConfig();
         final ConfigurationSection section = config.getConfigurationSection("generators");
-        for (final String id: section.getKeys(false)) {
+        for (final String id : section.getKeys(false)) {
             final ConfigurationSection genSection = section.getConfigurationSection(id);
-            final Material item = XMaterial.matchXMaterial(genSection.getString("item")).orElseThrow().get();
+            final Material item = XMaterial.matchXMaterial(genSection.getString("item")).orElseThrow(() -> new IllegalArgumentException("Invalid material for generator " + id)).get();
             final String display = genSection.getString("display");
             final List<String> lore = genSection.getStringList("lore");
             final GeneratorType type = GeneratorType.valueOf(genSection.getString("type").toUpperCase());
@@ -60,7 +61,7 @@ public class GeneratorManager {
                 if (enabled) {
                     final List<String> lines = armorStandSection.getStringList("lines");
                     final boolean bobbing = armorStandSection.getBoolean("bobbing");
-                    final Material armorStandItem = XMaterial.matchXMaterial(armorStandSection.getString("item")).orElseThrow().get();
+                    final Material armorStandItem = XMaterial.matchXMaterial(armorStandSection.getString("item")).orElseThrow(() -> new IllegalArgumentException("Invalid material for armor stand")).get();
                     final double rotationSpeed = armorStandSection.getDouble("rotation-speed");
                     armorStand = new GeneratorArmorStand(lines, bobbing, armorStandItem, rotationSpeed);
                 }

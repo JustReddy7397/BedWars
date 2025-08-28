@@ -28,7 +28,7 @@ public class ShopManager {
 
     public ShopManager(BedWars plugin) {
         this.plugin = plugin;
-        this.fillerMaterial = XMaterial.matchXMaterial(plugin.getSettingsConfig().getConfig().getString("gui.filler").toUpperCase()).orElse(XMaterial.BLACK_STAINED_GLASS_PANE);
+        this.fillerMaterial = XMaterial.matchXMaterial(plugin.getSettingsConfig().getConfig().getString("gui.filler", "a")).orElse(XMaterial.BLACK_STAINED_GLASS_PANE);
         this.shops = new HashMap<>();
         this.categories = new HashMap<>();
         this.items = new HashMap<>();
@@ -71,7 +71,7 @@ public class ShopManager {
         }
 
         for (ShopCategory category : categories.values()) {
-            for (ShopItem item : items.values()) {
+            for (ShopItem item : category.getItems()) {
                 if (items.containsKey(item.getId())) {
                     continue;
                 }

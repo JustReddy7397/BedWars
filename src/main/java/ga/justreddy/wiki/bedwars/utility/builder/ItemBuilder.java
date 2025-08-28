@@ -38,6 +38,10 @@ public class ItemBuilder {
         stack = itemStack;
     }
 
+    public ItemBuilder(Material material) {
+        this(new ItemStack(material));
+    }
+
     public ItemBuilder(XMaterial material) {
         this(material.parseItem());
     }

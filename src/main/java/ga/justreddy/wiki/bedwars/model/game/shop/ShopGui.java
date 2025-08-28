@@ -53,7 +53,7 @@ public class ShopGui implements InventoryHolder {
     public void open(GamePlayer gamePlayer) {
         Optional<Player> optionalPlayer = gamePlayer.getBukkitPlayer();
 
-        if (optionalPlayer.isEmpty()) {
+        if (!optionalPlayer.isPresent()) {
             return;
         }
 

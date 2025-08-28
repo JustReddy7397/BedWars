@@ -1,12 +1,16 @@
 package ga.justreddy.wiki.bedwars;
 
 import ga.justreddy.wiki.bedwars.action.ActionManager;
+import ga.justreddy.wiki.bedwars.commands.bedwars.MainBedWarsCommand;
 import ga.justreddy.wiki.bedwars.config.Config;
 import ga.justreddy.wiki.bedwars.model.addon.AddonManager;
 import ga.justreddy.wiki.bedwars.model.game.GameManager;
 import ga.justreddy.wiki.bedwars.model.game.generator.GeneratorManager;
 import ga.justreddy.wiki.bedwars.model.game.shop.ShopManager;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.IOException;
 
 public final class BedWars extends JavaPlugin {
 
@@ -21,7 +25,13 @@ public final class BedWars extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-
+        try {
+            settingsConfig = new Config(this, "settings.yml");
+        } catch (InvalidConfigurationException | IOException e) {
+            throw new RuntimeException(e);
+        }
+        loadManagers();
+        registerCommands();
     }
 
     @Override
@@ -39,6 +49,7 @@ public final class BedWars extends JavaPlugin {
 
     private void registerCommands() {
         // Register commands here
+        new MainBedWarsCommand(this);
     }
 
     public ActionManager getActionManager() {

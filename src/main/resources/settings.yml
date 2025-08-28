@@ -1,0 +1,13 @@
+#      _____  ____           ___          __
+#     |  __ \|  _ \         | \ \        / /
+#     | |__) | |_) | ___  __| |\ \  /\  / /_ _ _ __ ___
+#     |  _  /|  _ < / _ \/ _` | \ \/  \/ / _` | '__/ __|
+#     | | \ \| |_) |  __/ (_| |  \  /\  / (_| | |  \__ \
+#     |_|  \_\____/ \___|\__,_|   \/  \/ \__,_|_|  |___/
+#
+# Author: JustReddy
+# File: settings.yml
+# Description: Configuration file for settings in BedWars
+
+version: 1
+creation-date: "<date>"

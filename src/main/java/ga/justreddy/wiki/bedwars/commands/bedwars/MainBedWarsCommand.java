@@ -34,7 +34,7 @@ public class MainBedWarsCommand extends BedWarsCommand {
         }
 
         Optional<SubCommand<MainBedWarsCommand>> optionalSubCommand = getCommand(executor.getArg(0));
-        if (optionalSubCommand.isEmpty()) {
+        if (!optionalSubCommand.isPresent()) {
             // TODO Display error message for unknown command
             executor.getSender().sendMessage("Unknown command: " + executor.getArg(0));
             return true;

@@ -42,7 +42,7 @@ public class ActionManager {
 
     public void onAction(Player player, List<String> actions) {
         Optional<GamePlayer> optionalGamePlayer = GamePlayer.get(player);
-        if (optionalGamePlayer.isEmpty()) {
+        if (!optionalGamePlayer.isPresent()) {
             return;
         }
 

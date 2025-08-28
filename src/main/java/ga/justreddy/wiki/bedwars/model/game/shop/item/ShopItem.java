@@ -13,7 +13,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * @author JustReddy
@@ -57,8 +60,9 @@ public class ShopItem {
             builder = new ItemBuilder(shopManager.getFillerMaterial().parseItem());
         } else {
             Optional<XMaterial> item = XMaterial.matchXMaterial(section.getString("material"));
-            if (item.isEmpty())
+            if (!item.isPresent()) {
                 throw new NullPointerException("The material " + section.getString("material") + " is not a valid material!");
+            }
             builder = new ItemBuilder(item.get().parseItem());
         }
         this.dummy = true;
@@ -83,15 +87,17 @@ public class ShopItem {
             this.dummy = true;
         } else {
             Optional<XMaterial> item = XMaterial.matchXMaterial(section.getString("item.material"));
-            if (item.isEmpty())
+            if (!item.isPresent()) {
                 throw new NullPointerException("The material " + section.getString("item.material") + " is not a valid material!");
+            }
             builder = new ItemBuilder(item.get().parseItem());
             this.dummy = section.getBoolean("dummy");
         }
         if (!dummy) {
             Optional<XMaterial> priceMaterial = XMaterial.matchXMaterial(section.getString("price.material"));
-            if (priceMaterial.isEmpty())
+            if (!priceMaterial.isPresent()) {
                 throw new NullPointerException("The material " + section.getString("price.material") + " is not a valid material!");
+            }
             int price = section.getInt("price.amount");
             this.shopPrice = new ShopPrice(priceMaterial.get().parseMaterial(), price);
             this.amount = section.getInt("amount");
@@ -161,7 +167,7 @@ public class ShopItem {
 
     public boolean hasEnough(GamePlayer gamePlayer) {
         Optional<Player> optionalPlayer = gamePlayer.getBukkitPlayer();
-        if (optionalPlayer.isEmpty()) {
+        if (!optionalPlayer.isPresent()) {
             return false;
         }
         final Player player = optionalPlayer.get();
@@ -185,7 +191,7 @@ public class ShopItem {
 
     public void takeItems(GamePlayer gamePlayer) {
         Optional<Player> optionalPlayer = gamePlayer.getBukkitPlayer();
-        if (optionalPlayer.isEmpty()) {
+        if (optionalPlayer.isPresent()) {
             return;
         }
         final Player player = optionalPlayer.get();

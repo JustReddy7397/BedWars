@@ -46,7 +46,7 @@ public class GiveAction extends Action {
 
         Optional<Player> optionalPlayer = gamePlayer.getBukkitPlayer();
 
-        if (optionalPlayer.isEmpty()) {
+        if (!optionalPlayer.isPresent()) {
             return;
         }
 

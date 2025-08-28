@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,11 +34,11 @@ public abstract class BedWarsCommand implements CommandExecutor {
     }
 
     public BedWarsCommand(BedWars plugin, String name, boolean requiresPlayer, String permission, String... aliases) {
-        this(plugin, name, requiresPlayer, permission, List.of(aliases));
+        this(plugin, name, requiresPlayer, permission, new ArrayList<>(Arrays.asList(aliases)));
     }
 
     public BedWarsCommand(BedWars plugin, String name, boolean requiresPlayer, String permission) {
-        this(plugin, name, requiresPlayer, permission, List.of());
+        this(plugin, name, requiresPlayer, permission, new ArrayList<>());
     }
 
     @Override

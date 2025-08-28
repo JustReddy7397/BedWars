@@ -20,6 +20,7 @@ public class AdminCommand extends SubCommand<MainBedWarsCommand> {
         super(plugin, "admin", "Admin commands", "/bw admin", "bedwars.bw.admin");
         this.commands = new HashMap<>();
         addCommand(new CreateCommand(plugin));
+        addCommand(new SpawnGeneratorsCommand(plugin));
     }
 
     @Override
@@ -32,19 +33,20 @@ public class AdminCommand extends SubCommand<MainBedWarsCommand> {
         }
 
         Optional<SubCommand<AdminCommand>> optionalSubCommand = getCommand(executor.getArg(0));
-        if (optionalSubCommand.isEmpty()) {
+        if (!optionalSubCommand.isPresent()) {
             // TODO Display error message for unknown command
             executor.getSender().sendMessage("Unknown admin command: " + executor.getArg(0));
             return true;
         }
 
-        final SubCommand subCommand = optionalSubCommand.get();
+        final SubCommand<AdminCommand> subCommand = optionalSubCommand.get();
         if (subCommand.getPermission() != null && !executor.getSender().hasPermission(subCommand.getPermission())) {
             // TODO Display error message for insufficient permissions
             executor.getSender().sendMessage("You do not have permission to use this admin command: " + subCommand.getName());
             return true;
         }
 
+        System.out.println("Executing admin subcommand: " + subCommand.getName() + " with args: " + String.join(" ", executor.getArgs()));
         return subCommand.execute(executor.stripArgs(1));
     }
 

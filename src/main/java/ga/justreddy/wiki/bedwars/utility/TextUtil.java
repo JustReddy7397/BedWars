@@ -2,6 +2,7 @@ package ga.justreddy.wiki.bedwars.utility;
 
 import org.bukkit.ChatColor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,7 @@ public class TextUtil {
 
     public static List<String> colorize(List<String> list) {
         if (list == null || list.isEmpty()) {
-            return List.of();
+            return new ArrayList<>();
         }
         return list.stream()
                 .map(TextUtil::colorize)
@@ -35,7 +36,7 @@ public class TextUtil {
 
     public static List<String> colorize(List<String> list, Object... args) {
         if (list == null || list.isEmpty()) {
-            return List.of();
+            return new ArrayList<>();
         }
         return list.stream()
                 .map(text -> colorize(text, args))

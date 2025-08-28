@@ -66,7 +66,7 @@ public class Generator {
 
             int entityCount = 0;
 
-            for (final Entity entity : world.getNearbyEntities(location, 2, 1, 2)) {
+            for (final Entity entity : world.getNearbyEntities(location, 2, 5, 2)) {
                 if (entity.getType() != EntityType.DROPPED_ITEM) {
                     continue;
                 }

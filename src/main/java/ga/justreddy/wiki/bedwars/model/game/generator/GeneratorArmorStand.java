@@ -61,6 +61,7 @@ public class GeneratorArmorStand {
         }
         if (item != null && item != Material.AIR) {
             Location loc = location.clone().add(0.0, OFFSET, 0.0);
+            yaw -= 2.0;
             loc.setYaw((float) yaw);
             helmStand = world.spawn(loc, ArmorStand.class);
             helmStand.setVisible(false);

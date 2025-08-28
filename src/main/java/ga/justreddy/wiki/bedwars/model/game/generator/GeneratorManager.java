@@ -65,9 +65,9 @@ public class GeneratorManager {
                     final double rotationSpeed = armorStandSection.getDouble("rotation-speed");
                     armorStand = new GeneratorArmorStand(lines, bobbing, armorStandItem, rotationSpeed);
                 }
-                final Generator generator = new Generator(id, item, display, lore, type, spawnDelays, maxSpawn, spawnAmount, armorStand);
-                generators.add(generator);
             }
+            final Generator generator = new Generator(id, item, display, lore, type, spawnDelays, maxSpawn, spawnAmount, armorStand);
+            generators.add(generator);
         }
     }
 

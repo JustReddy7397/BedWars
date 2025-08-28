@@ -142,12 +142,13 @@ public class Generator {
         return armorStand;
     }
 
-    public Generator cloneGenerator()  {
-        return new Generator(id, item, display, new ArrayList<>(lore), type, new HashMap<>(spawnDelays), maxSpawn, spawnAmount, new GeneratorArmorStand(
-                armorStand.getLines(),
-                armorStand.isBobbing(),
-                armorStand.getItem(),
-                armorStand.getRotationSpeed()
-        ));
+    public Generator cloneGenerator() {
+        return new Generator(id, item, display, new ArrayList<>(lore), type, new HashMap<>(spawnDelays), maxSpawn, spawnAmount,
+                armorStand == null ? null : new GeneratorArmorStand(
+                        armorStand.getLines(),
+                        armorStand.isBobbing(),
+                        armorStand.getItem(),
+                        armorStand.getRotationSpeed()
+                ));
     }
 }
